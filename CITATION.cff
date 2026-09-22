@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Si utilizas este software, cítalo con los datos siguientes."
+type: software
+title: "Ficha Maker: de la ficha de proyecto maker al post para redes"
+abstract: >-
+  Herramienta web para documentar prototipos fabricados en un FabLab o espacio maker. Genera una ficha visual imprimible con código QR, exportable en HTML, y textos adaptados a Instagram, LinkedIn y TikTok con hashtags sugeridos. Los datos se guardan y cargan en JSON. Funciona íntegramente en el navegador.
+authors:
+  - family-names: "Merchán Albano"
+    given-names: "Marta"
+version: 1.0.0
+date-released: 2026-09-22
+license: MIT
+repository-code: "https://github.com/martamerchan/ficha-maker-redes"
+url: "https://martamerchan.github.io/ficha-maker-redes/"
+keywords:
+  - FabLab
+  - fabricación digital
+  - cultura maker
+  - documentación de proyectos
+  - redes sociales

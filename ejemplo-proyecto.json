@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "titulo": "Lámpara plegable Duna",
+  "resumen": "Una lámpara de escritorio que se pliega en plano para guardarla o llevarla en la mochila.",
+  "descripcion": "Queríamos una lámpara de lectura que ocupara poco espacio en residencias y pisos compartidos. La pantalla es una lámina de contrachapado con un patrón de cortes que le permite doblarse sin romperse. La base y las bisagras se imprimen en 3D, y la luz es una tira LED que se alimenta por USB.\n\nEl diseño se ajustó en tres iteraciones: en la primera la madera se partía por las curvas, así que se redujo la separación entre cortes a 2 mm.",
+  "autores": ["Ana Ejemplo", "Luis Ejemplo"],
+  "fablab": "FabLab de ejemplo",
+  "fecha": "2026-05-14",
+  "maquinas": ["laser", "impresion3d", "electronica"],
+  "otraMaquina": "",
+  "materiales": ["Contrachapado de 3 mm", "PLA", "Tira LED USB"],
+  "tiempo": { "horas": 3, "minutos": 30 },
+  "dificultad": "media",
+  "foto": "ejemplo-foto.jpg",
+  "altFoto": "Lámpara de madera clara en forma de arco sobre una base blanca, encendida sobre un escritorio.",
+  "enlaces": {
+    "documentacion": "https://example.org/proyectos/lampara-duna",
+    "archivos": "https://example.org/proyectos/lampara-duna/archivos",
+    "video": ""
+  },
+  "licencia": "CC BY-SA 4.0",
+  "hashtagsExtra": "#DisenoAbierto"
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha Maker · De la ficha de proyecto al post para redes</title>
+  <meta name="description" content="Documenta un prototipo hecho en un FabLab y genera una ficha visual imprimible y textos adaptados para Instagram, LinkedIn y TikTok.">
+  <meta name="author" content="Marta Merchán Albano">
+  <meta name="theme-color" content="#166534">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23166534'/%3E%3Cpath d='M9 8h14v16H9z' fill='%23fffdf7'/%3E%3Cpath d='M12 12h8M12 16h8M12 20h5' stroke='%23166534' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <div class="cabecera__dentro">
+      <div class="marca">
+        <span class="marca__logo" aria-hidden="true">FM</span>
+        <div>
+          <h1 class="marca__titulo">Ficha Maker</h1>
+          <p class="marca__lema">Documenta tu prototipo y conviértelo en publicaciones para redes</p>
+        </div>
+      </div>
+      <nav class="acciones" aria-label="Acciones">
+        <button type="button" class="boton boton--claro" id="botonEjemplo">Cargar ejemplo</button>
+        <label class="boton boton--linea" for="archivoJson">Abrir datos (JSON)
+          <input type="file" id="archivoJson" accept="application/json,.json" hidden>
+        </label>
+        <button type="button" class="boton boton--linea" id="botonGuardar">Guardar datos (JSON)</button>
+      </nav>
+    </div>
+  </header>
+
+  <p class="aviso" id="aviso" role="status" hidden></p>
+
+  <main class="principal">
+
+    <!-- ================= Formulario ================= -->
+    <form class="formulario" id="formulario" novalidate>
+
+      <fieldset class="grupo">
+        <legend class="grupo__titulo"><span>01</span> El proyecto</legend>
+        <label class="campo">Título del proyecto *
+          <input type="text" name="titulo" required maxlength="90" placeholder="Por ejemplo: Soporte plegable para tableta">
+        </label>
+        <label class="campo">Resumen en una frase
+          <input type="text" name="resumen" maxlength="160" placeholder="Qué es y para qué sirve, en pocas palabras">
+        </label>
+        <label class="campo">Descripción
+          <textarea name="descripcion" rows="5" placeholder="Cuenta el problema que resuelve, cómo se diseñó y qué se aprendió."></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset class="grupo">
+        <legend class="grupo__titulo"><span>02</span> Personas y lugar</legend>
+        <label class="campo">Autoría <small>(una persona por línea)</small>
+          <textarea name="autores" rows="3" placeholder="Nombre Apellido"></textarea>
+        </label>
+        <div class="fila">
+          <label class="campo">FabLab o espacio
+            <input type="text" name="fablab" placeholder="Nombre del FabLab">
+          </label>
+          <label class="campo">Fecha
+            <input type="date" name="fecha">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="grupo">
+        <legend class="grupo__titulo"><span>03</span> Fabricación</legend>
+        <p class="campo__etiqueta" id="etMaquinas">Máquinas utilizadas</p>
+        <div class="maquinas" id="maquinas" role="group" aria-labelledby="etMaquinas">
+          <!-- Se generan desde js/ficha.js -->
+        </div>
+        <label class="campo">Otra máquina o técnica
+          <input type="text" name="otraMaquina" placeholder="Por ejemplo: soldadura, costura…">
+        </label>
+        <label class="campo">Materiales <small>(separados por comas)</small>
+          <input type="text" name="materiales" placeholder="PLA, contrachapado de 3 mm, tornillería M3">
+        </label>
+        <div class="fila">
+          <fieldset class="campo campo--tiempo">
+            <legend>Tiempo de fabricación</legend>
+            <label><input type="number" name="horas" min="0" max="999" inputmode="numeric" aria-label="Horas"> h</label>
+            <label><input type="number" name="minutos" min="0" max="59" inputmode="numeric" aria-label="Minutos"> min</label>
+          </fieldset>
+          <label class="campo">Dificultad
+            <select name="dificultad">
+              <option value="">Sin indicar</option>
+              <option value="basica">Básica</option>
+              <option value="media">Media</option>
+              <option value="avanzada">Avanzada</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="grupo">
+        <legend class="grupo__titulo"><span>04</span> Foto</legend>
+        <div class="foto">
+          <div class="foto__vista" id="fotoVista"><span>Sin foto</span></div>
+          <div class="foto__controles">
+            <label class="boton boton--linea boton--pequeno" for="archivoFoto">Elegir foto
+              <input type="file" id="archivoFoto" accept="image/*" hidden>
+            </label>
+            <button type="button" class="boton boton--texto boton--pequeno" id="quitarFoto">Quitar</button>
+            <p class="nota">Se reduce a 1200 px y se guarda dentro del archivo de datos. No se sube a ningún sitio.</p>
+          </div>
+        </div>
+        <label class="campo">Texto alternativo de la foto
+          <input type="text" name="altFoto" maxlength="200" placeholder="Describe la foto para quien no puede verla">
+        </label>
+      </fieldset>
+
+      <fieldset class="grupo">
+        <legend class="grupo__titulo"><span>05</span> Enlaces y licencia</legend>
+        <label class="campo">Documentación o repositorio
+          <input type="url" name="documentacion" placeholder="https://…">
+        </label>
+        <label class="campo">Archivos de diseño
+          <input type="url" name="archivos" placeholder="https://…">
+        </label>
+        <label class="campo">Vídeo
+          <input type="url" name="video" placeholder="https://…">
+        </label>
+        <label class="campo">Licencia del diseño
+          <select name="licencia">
+            <option>Sin especificar</option>
+            <option>CC BY 4.0</option>
+            <option>CC BY-SA 4.0</option>
+            <option>CC BY-NC-SA 4.0</option>
+            <option>CERN-OHL-S v2</option>
+            <option>MIT</option>
+            <option>GPL-3.0</option>
+          </select>
+        </label>
+        <label class="campo">Hashtags propios <small>(opcional)</small>
+          <input type="text" name="hashtagsExtra" placeholder="#MiFabLab #RetoMaker">
+        </label>
+      </fieldset>
+
+      <button type="reset" class="boton boton--texto" id="botonVaciar">Vaciar formulario</button>
+    </form>
+
+    <!-- ================= Resultado ================= -->
+    <section class="resultado" aria-label="Resultado">
+      <div class="pestanas" role="tablist" aria-label="Resultado">
+        <button type="button" role="tab" id="tabFicha" aria-controls="panelFicha" aria-selected="true">Ficha del proyecto</button>
+        <button type="button" role="tab" id="tabRedes" aria-controls="panelRedes" aria-selected="false" tabindex="-1">Textos para redes</button>
+      </div>
+
+      <div class="panel" id="panelFicha" role="tabpanel" aria-labelledby="tabFicha">
+        <div class="panel__acciones">
+          <button type="button" class="boton" id="botonImprimir">Imprimir o guardar en PDF</button>
+          <button type="button" class="boton boton--linea" id="botonHtml">Exportar ficha (HTML)</button>
+        </div>
+        <div class="lienzo-ficha" id="ficha"></div>
+      </div>
+
+      <div class="panel" id="panelRedes" role="tabpanel" aria-labelledby="tabRedes" hidden>
+        <p class="nota">Los textos se generan a partir de la ficha. Puedes editarlos antes de copiarlos; si cambias la ficha, pulsa «Regenerar».</p>
+        <div class="redes" id="redes">
+          <!-- Una tarjeta por red, generada desde js/app.js -->
+        </div>
+        <button type="button" class="boton boton--linea" id="botonRegenerar">Regenerar textos</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Ficha Maker · Software libre con licencia MIT · Marta Merchán Albano, 2026</p>
+    <p>Los datos y las fotos se procesan en tu navegador y no se envían a ningún sitio. Para conservarlos, usa «Guardar datos (JSON)».</p>
+  </footer>
+
+  <!-- Librería para generar códigos QR (MIT, Kazuhiko Arase) -->
+  <script src="lib/qrcode.js"></script>
+  <script src="js/ficha.js"></script>
+  <script src="js/redes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
