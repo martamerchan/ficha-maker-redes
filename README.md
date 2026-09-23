@@ -1,6 +1,6 @@
 # Ficha Maker · De la ficha de proyecto al post para redes
 
-<!-- INSIGNIA DOI: se añadirá aquí después de publicar la versión 1.0.0 en Zenodo -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22913694.svg)](https://doi.org/10.5281/zenodo.22913694)
 
 Herramienta web para documentar un prototipo fabricado en un FabLab o espacio maker y convertir esa documentación en contenido de comunicación. A partir de un formulario genera una **ficha visual del proyecto**, lista para la web y para imprimir, y **textos adaptados para Instagram, LinkedIn y TikTok**, con la longitud, el tono y los hashtags de cada red. Es genérica y sirve para cualquier FabLab.
 
